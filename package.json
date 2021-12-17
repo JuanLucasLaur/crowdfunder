@@ -1,0 +1,28 @@
+{
+  "name": "crowdfunder",
+  "version": "0.1.0",
+  "description": "Crowdfunding site using smart contracts",
+  "main": "index.js",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JuanLucasLaur/crowdfunder.git"
+  },
+  "keywords": [
+    "crowdfunder",
+    "crowdfunding",
+    "solidity"
+  ],
+  "author": "Juan L",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JuanLucasLaur/crowdfunder/issues"
+  },
+  "homepage": "https://github.com/JuanLucasLaur/crowdfunder#readme",
+  "dependencies": {
+    "fs-extra": "^10.0.0",
+    "ganache-cli": "^6.12.2",
+    "mocha": "^9.1.3",
+    "solc": "^0.8.10",
+    "web3": "^1.6.1"
+  }
+}
