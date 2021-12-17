@@ -46,7 +46,7 @@ contract Campaign {
      */
     function contribute() public payable {
         // Make sure that the contribution isn't below the minimum.
-        require(msg.value > minimumContribution);
+        require(msg.value >= minimumContribution);
 
         if (!approvers[msg.sender]) {
             approvers[msg.sender] = true;
