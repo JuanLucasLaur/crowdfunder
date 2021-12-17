@@ -2,9 +2,8 @@ const assert = require('assert');
 const ganache = require('ganache-cli');
 const Web3 = require('web3');
 const web3 = new Web3(ganache.provider());
-
-const CAMPAIGN_FACTORY_BUILD = require('../ethereum/build/CampaignFactory.json');
-const CAMPAIGN_BUILD = require('../ethereum/build/Campaign.json');
+const campaignFactoryBuild = require('../ethereum/build/CampaignFactory.json');
+const campaignBuild = require('../ethereum/build/Campaign.json');
 
 const MANAGER_ADDRESS = 0;
 const MINIMUM_CONTRIBUTION = 100;
@@ -18,8 +17,8 @@ beforeEach(async () => {
     accounts = await web3.eth.getAccounts();
 
     // Deploy CampaignFactory.
-    campaignFactory = await new web3.eth.Contract(CAMPAIGN_FACTORY_BUILD.abi)
-        .deploy({data: CAMPAIGN_FACTORY_BUILD.evm.bytecode.object})
+    campaignFactory = await new web3.eth.Contract(campaignFactoryBuild.abi)
+        .deploy({data: campaignFactoryBuild.evm.bytecode.object})
         .send({from: accounts[MANAGER_ADDRESS], gas: '1250000'});
 
     // Create a Campaign.
@@ -31,7 +30,7 @@ beforeEach(async () => {
     // Access the Campaign that was created.
     [campaignAddress] = await campaignFactory.methods.getDeployedCampaigns().call();
     campaign = await new web3.eth.Contract(
-        CAMPAIGN_BUILD.abi,
+        campaignBuild.abi,
         campaignAddress
     );
 });
