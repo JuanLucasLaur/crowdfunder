@@ -36,8 +36,8 @@ fs.ensureDirSync(buildPath);
 
 // Loop over output and write each contract to a different file.
 if (output.errors) {
-    output.errors.forEach((err) => {
-        throw new Error(err.formattedMessage);
+    output.errors.forEach((error) => {
+        throw new Error(error.formattedMessage);
     });
 } else {
     Object.values(output.contracts).forEach(contract => {
