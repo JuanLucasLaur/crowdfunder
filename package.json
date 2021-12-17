@@ -3,6 +3,9 @@
   "version": "0.1.0",
   "description": "Crowdfunding site using smart contracts",
   "main": "index.js",
+  "scripts": {
+    "test": "mocha"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/JuanLucasLaur/crowdfunder.git"
