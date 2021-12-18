@@ -18,6 +18,7 @@ contract Campaign {
 
     Request[] public requests;
     address public manager;
+    string public name;
     uint256 public minimumContribution;
     uint256 public approversCount;
 
@@ -36,9 +37,10 @@ contract Campaign {
      * @param minimum Minimum contribution allowed for the campaign.
      * @param creator Address of the Campaign's creator.
      */
-    constructor(uint256 minimum, address creator) {
+    constructor(uint256 minimum, address creator, string memory campaignName) {
         manager = creator;
         minimumContribution = minimum;
+        name = campaignName;
     }
 
     /** 

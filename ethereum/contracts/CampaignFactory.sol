@@ -15,8 +15,8 @@ contract CampaignFactory {
      * @dev Create a new Campaign.
      * @param minimum Minimum contribution allowed for the campaign.
      */
-    function createCampaign(uint minimum) public {
-        Campaign newCampaign = new Campaign(minimum, msg.sender);
+    function createCampaign(uint256 minimum, string memory campaignName) public {
+        Campaign newCampaign = new Campaign(minimum, msg.sender, campaignName);
         deployedCampaigns.push(newCampaign);
     }
     

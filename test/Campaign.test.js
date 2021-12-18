@@ -19,12 +19,12 @@ beforeEach(async () => {
     // Deploy CampaignFactory.
     campaignFactory = await new web3.eth.Contract(campaignFactoryBuild.abi)
         .deploy({data: campaignFactoryBuild.evm.bytecode.object})
-        .send({from: accounts[MANAGER_ADDRESS], gas: '1250000'});
+        .send({from: accounts[MANAGER_ADDRESS], gas: '2000000'});
 
     // Create a Campaign.
-    await campaignFactory.methods.createCampaign(MINIMUM_CONTRIBUTION).send({
+    await campaignFactory.methods.createCampaign(MINIMUM_CONTRIBUTION, 'Test campaign').send({
         from: accounts[MANAGER_ADDRESS],
-        gas: '1250000'
+        gas: '2000000'
     });
 
     // Access the Campaign that was created.
@@ -75,7 +75,7 @@ describe('Campaigns', () => {
 
         await campaign.methods.createRequest(requestDescription, '2000', accounts[9]).send({
             from: accounts[MANAGER_ADDRESS],
-            gas: '1250000'
+            gas: '2000000'
         });
         const request = await campaign.methods.requests(0).call();
 
@@ -93,7 +93,7 @@ describe('Campaigns', () => {
             accounts[recipientAddress]
         ).send({
             from: accounts[MANAGER_ADDRESS],
-            gas: '1250000'
+            gas: '2000000'
         });
 
         // Add a contributor/approver .
@@ -105,7 +105,7 @@ describe('Campaigns', () => {
         // Make the contributor approve the test request.
         await campaign.methods.approveRequest(0).send({
             from: accounts[1],
-            gas: '1250000'
+            gas: '2000000'
         });
 
         // Get recipient's balance before being paid.
@@ -116,7 +116,7 @@ describe('Campaigns', () => {
         // Make the campaign manager approve the test request.
         await campaign.methods.finalizeRequest(0).send({
             from: accounts[0],
-            gas: '125000'
+            gas: '2000000'
         })
 
         // Get recipient's balance after being paid.
