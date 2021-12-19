@@ -1,27 +1,30 @@
-import React, { useEffect, useState } from 'react';
+import React from 'react';
 import factory from '../ethereum/factory';
+import { GetStaticProps } from 'next';
 
-const Index: React.FunctionComponent = () => {
-    const [campaigns, setCampaigns] = useState<string[]>([]);
+interface IndexProps {
+    campaignAddresses?: string[];
+}
 
-    useEffect(() => {
-        const getDeployedCampaigns = async () => {
-            const fetchedCampaigns = await factory.methods
-              .getDeployedCampaigns()
-              .call();
-
-            setCampaigns(fetchedCampaigns);
-        };
-
-        getDeployedCampaigns();
-    }, []);
+const Index: React.FunctionComponent<IndexProps> = ({ campaignAddresses }) => {
+    console.log(campaignAddresses);
 
     return (
-      <article>
-          <h2>Campaigns index</h2>
-          {campaigns}
-      </article>
+        <article>
+            <h2>Campaigns index</h2>
+            {campaignAddresses}
+        </article>
     );
+};
+
+export const getStaticProps: GetStaticProps<IndexProps> = async () => {
+    const campaignAddresses = await factory.methods.getDeployedCampaigns().call();
+
+    return {
+        props: {
+            campaignAddresses
+        }
+    };
 };
 
 export default Index;
