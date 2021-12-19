@@ -9,21 +9,31 @@ import "./Campaign.sol";
  * @dev Allows creation and deployment of campaigns
  */
 contract CampaignFactory {
-    Campaign[] public deployedCampaigns;
+    struct DeployedCampaign {
+        Campaign campaignAddress; // Address of the deployed campaign.
+        string campaignName; // Name of the deployed campaign.
+    }
 
-    /** 
+    DeployedCampaign[] public deployedCampaigns;
+
+    /**
      * @dev Create a new Campaign.
      * @param minimum Minimum contribution allowed for the campaign.
      */
     function createCampaign(uint256 minimum, string memory campaignName) public {
-        Campaign newCampaign = new Campaign(minimum, msg.sender, campaignName);
+        DeployedCampaign memory newCampaign = DeployedCampaign({
+            campaignAddress: new Campaign(minimum, msg.sender, campaignName),
+            campaignName: campaignName
+        });
+
         deployedCampaigns.push(newCampaign);
     }
-    
-    /** 
+
+
+    /**
      * @dev Return all deployed campaigns.
      */
-    function getDeployedCampaigns() public view returns (Campaign[] memory) {
+    function getDeployedCampaigns() public view returns (DeployedCampaign[] memory) {
         return deployedCampaigns;
     }
 }

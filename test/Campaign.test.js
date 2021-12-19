@@ -28,7 +28,7 @@ beforeEach(async () => {
     });
 
     // Access the Campaign that was created.
-    [campaignAddress] = await campaignFactory.methods.getDeployedCampaigns().call();
+    [{ campaignAddress }] = await campaignFactory.methods.getDeployedCampaigns().call();
     campaign = await new web3.eth.Contract(
         campaignBuild.abi,
         campaignAddress
