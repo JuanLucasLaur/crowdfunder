@@ -1,8 +1,9 @@
+import 'semantic-ui-css/semantic.min.css';
 import React from 'react';
 import { GetStaticProps } from 'next';
 import { Card, Button } from 'semantic-ui-react';
+import Layout from '../components/Layout';
 import factory from '../ethereum/factory';
-import 'semantic-ui-css/semantic.min.css';
 
 type Campaign = {
     address: string;
@@ -28,11 +29,13 @@ const Index: React.FunctionComponent<IndexProps> = ({ campaigns }) => {
     };
 
     return (
-        <article>
-            <h3>Open Campaigns</h3>
-            {renderCampaigns()}
-            <Button content="Create Campaign" icon="add" primary />
-        </article>
+        <Layout>
+            <article>
+                <h3>Open Campaigns</h3>
+                <Button content="Create Campaign" icon="add" floated="right" primary />
+                {renderCampaigns()}
+            </article>
+        </Layout>
     );
 };
 
