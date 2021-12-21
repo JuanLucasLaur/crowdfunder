@@ -40,7 +40,7 @@ if (output.errors) {
         throw new Error(error.formattedMessage);
     });
 } else {
-    Object.values(output.contracts).forEach(contract => {
+    Object.values(output.contracts).forEach((contract) => {
         Object.entries(contract).forEach(([contractName, contractProps]) => {
             fs.writeFileSync(
                 path.resolve(buildPath, `${contractName}.json`),
