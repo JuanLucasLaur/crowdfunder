@@ -2,8 +2,8 @@ const assert = require('assert');
 const ganache = require('ganache-cli');
 const Web3 = require('web3');
 const web3 = new Web3(ganache.provider());
-const campaignFactoryBuild = require('../ethereum/build/CampaignFactory.json');
-const campaignBuild = require('../ethereum/build/Campaign.json');
+const campaignFactoryBuild = require('../src/ethereum/build/CampaignFactory.json');
+const campaignBuild = require('../src/ethereum/build/Campaign.json');
 
 const MANAGER_ADDRESS = 0;
 const MINIMUM_CONTRIBUTION = 100;
