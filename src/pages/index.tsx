@@ -1,7 +1,7 @@
 import React from 'react';
 import { GetStaticProps } from 'next';
 import Link from 'next/link';
-import { Card, Button } from 'semantic-ui-react';
+import { Button, Card, Message } from 'semantic-ui-react';
 import Layout from '../components/Layout';
 import factory from '../ethereum/factory';
 
@@ -16,16 +16,35 @@ interface IndexProps {
 
 const Index: React.FunctionComponent<IndexProps> = ({ campaigns }) => {
     const renderCampaigns = () => {
-        const items = campaigns.map((campaign) => {
-            return {
-                header: campaign.name,
-                meta: campaign.address,
-                description: <a>View Campaign</a>,
-                fluid: true
-            };
-        });
+        let render: JSX.Element;
 
-        return <Card.Group items={items} />;
+        if (campaigns.length) {
+            const items = campaigns.map((campaign) => {
+                return {
+                    header: campaign.name,
+                    meta: campaign.address,
+                    description: (
+                        <Link href={`/campaigns/${campaign.address}`}>
+                            <a>View Campaign</a>
+                        </Link>
+                    ),
+                    fluid: true
+                };
+            });
+
+            render = <Card.Group items={items} />;
+        } else {
+            render = (
+                <Message
+                    info
+                    compact
+                    content="There are no campaigns, but you can create one."
+                    header="No campaigns"
+                />
+            );
+        }
+
+        return render;
     };
 
     return (
@@ -48,7 +67,7 @@ const Index: React.FunctionComponent<IndexProps> = ({ campaigns }) => {
     );
 };
 
-export const getStaticProps: GetStaticProps<IndexProps> = async () => {
+export const getStaticProps: GetStaticProps = async () => {
     const fetchedCampaigns = await factory.methods
         .getDeployedCampaigns()
         .call();
