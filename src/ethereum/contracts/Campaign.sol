@@ -52,7 +52,7 @@ contract Campaign {
 
         if (!approvers[msg.sender]) {
             approvers[msg.sender] = true;
-            approversCount++;    
+            approversCount++;
         }
     }
 
@@ -62,9 +62,9 @@ contract Campaign {
      * @param value Amount of money to spend.
      * @param recipient Address that the money will be sent to.
      */
-    function createRequest(string memory description, uint256 value, address payable recipient) public restricted {   
+    function createRequest(string memory description, uint256 value, address payable recipient) public restricted {
         // Make sure that the recipient address isn't the same that the address creating the request.
-        require(msg.sender != recipient); 
+        require(msg.sender != recipient);
 
         Request storage r = requests.push();
         r.description = description;
@@ -106,5 +106,26 @@ contract Campaign {
 
         requestToExecute.recipient.transfer(requestToExecute.value);
         requestToExecute.complete = true;
+    }
+
+    /**
+     * @dev Get info about the campaign.
+     */
+    function getSummary() public view returns (string memory, uint256, uint256, uint256, uint256, address) {
+        return (
+        name,
+        minimumContribution,
+        address(this).balance,
+        requests.length,
+        approversCount,
+        manager
+        );
+    }
+
+    /**
+     * @dev Get the amount of spending requests in the campaign.
+     */
+    function getRequestsCount() public view returns (uint256) {
+        return requests.length;
     }
 }
