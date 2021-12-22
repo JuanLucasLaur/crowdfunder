@@ -1,13 +1,20 @@
 import React from 'react';
-import {Menu} from 'semantic-ui-react';
+import Link from 'next/link';
+import { Menu } from 'semantic-ui-react';
 
 const Header: React.FunctionComponent = () => {
     return (
         <Menu>
-            <Menu.Item>CoinCrowd</Menu.Item>
+            <Link href="/">
+                <a className='item'>CoinCrowd</a>
+            </Link>
             <Menu.Menu position="right">
-                <Menu.Item>Campaigns</Menu.Item>
-                <Menu.Item>+</Menu.Item>
+                <Link href="/">
+                    <a className='item'>Campaigns</a>
+                </Link>
+                <Link href="/campaigns/new">
+                    <a className='item'>+</a>
+                </Link>
             </Menu.Menu>
         </Menu>
     );

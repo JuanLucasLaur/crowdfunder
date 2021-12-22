@@ -1,5 +1,6 @@
 import React from 'react';
 import { GetStaticProps } from 'next';
+import Link from 'next/link';
 import { Card, Button } from 'semantic-ui-react';
 import Layout from '../components/Layout';
 import factory from '../ethereum/factory';
@@ -31,7 +32,16 @@ const Index: React.FunctionComponent<IndexProps> = ({ campaigns }) => {
         <Layout>
             <article>
                 <h3>Open Campaigns</h3>
-                <Button content="Create Campaign" icon="add" floated="right" primary />
+                <Link href="/campaigns/new">
+                    <a>
+                        <Button
+                            content="Create Campaign"
+                            icon="add"
+                            floated="right"
+                            primary
+                        />
+                    </a>
+                </Link>
                 {renderCampaigns()}
             </article>
         </Layout>
