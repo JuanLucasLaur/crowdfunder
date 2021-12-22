@@ -1,6 +1,4 @@
-/* eslint-disable @typescript-eslint/ban-ts-comment */
 // @ts-nocheck
-
 import Web3 from 'web3';
 import keys from './config/keys';
 

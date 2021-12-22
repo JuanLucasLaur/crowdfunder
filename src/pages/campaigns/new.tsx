@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useRouter } from 'next/router';
 import { Button, Form, Input, Message } from 'semantic-ui-react';
 import Layout from '../../components/Layout';
 import factory from '../../ethereum/factory';
@@ -9,11 +10,12 @@ const New: React.FunctionComponent = () => {
     const [minimumContribution, setMinimumContribution] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
     const [loading, setLoading] = useState(false);
+    const router = useRouter();
 
     /**
      * Handles new campaign form submittal.
      *
-     * @param event {React.FormEvent}
+     * @param {React.FormEvent} event
      */
     const onSubmit = async (event: React.FormEvent) => {
         event.preventDefault();
@@ -28,6 +30,7 @@ const New: React.FunctionComponent = () => {
                 .send({
                     from: accounts[0]
                 });
+            router.push('/');
         } catch (error: any) {
             setErrorMessage(error.message);
         }
@@ -63,7 +66,9 @@ const New: React.FunctionComponent = () => {
                 </Form.Field>
 
                 <Message error header="Error" content={errorMessage} />
-                <Button loading={loading} primary>Create Campaign</Button>
+                <Button loading={loading} primary>
+                    Create Campaign
+                </Button>
             </Form>
         </Layout>
     );
