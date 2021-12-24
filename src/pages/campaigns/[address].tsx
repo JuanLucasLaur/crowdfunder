@@ -3,7 +3,7 @@ import { GetServerSideProps } from 'next';
 import { Card, Message, StrictCardProps } from 'semantic-ui-react';
 import Layout from '../../components/Layout';
 import getCampaignContract from '../../ethereum/campaign';
-import web3 from '../../ethereum/web3';
+import { fromWei } from 'web3-utils';
 import { CampaignInfo } from '../../common/types';
 
 interface CampaignProps {
@@ -50,7 +50,7 @@ const Campaign: React.FunctionComponent<CampaignProps> = ({ campaignInfo }) => {
                         'Number of people who have already donated to this campaign.'
                 },
                 {
-                    header: web3.utils.fromWei(campaignInfo.balance, 'ether'),
+                    header: fromWei(campaignInfo.balance, 'ether'),
                     meta: 'Campaign Balance (in ether)',
                     description: 'How much money this campaign has.'
                 }
