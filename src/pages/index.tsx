@@ -4,14 +4,10 @@ import Link from 'next/link';
 import { Button, Card, Message } from 'semantic-ui-react';
 import Layout from '../components/Layout';
 import factory from '../ethereum/factory';
-
-type Campaign = {
-    address: string;
-    name: string;
-};
+import { CampaignInfo } from '../common/types';
 
 interface IndexProps {
-    campaigns: Campaign[];
+    campaigns: CampaignInfo[];
 }
 
 const Index: React.FunctionComponent<IndexProps> = ({ campaigns }) => {
@@ -72,7 +68,7 @@ export const getStaticProps: GetStaticProps = async () => {
         .getDeployedCampaigns()
         .call();
 
-    let campaigns: Campaign[];
+    let campaigns: CampaignInfo[];
 
     if (fetchedCampaigns?.length) {
         campaigns = fetchedCampaigns.map((fetchedCampaign: any) => {
