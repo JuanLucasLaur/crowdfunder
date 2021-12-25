@@ -7,7 +7,7 @@ const Layout: React.FunctionComponent = ({ children }) => {
     return (
         <>
             <Header />
-            <Container>{children}</Container>
+            <Container style={{ minWidth: '85vw' }}>{children}</Container>
         </>
     );
 };
