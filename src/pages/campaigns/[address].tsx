@@ -1,6 +1,13 @@
 import React from 'react';
 import { GetServerSideProps } from 'next';
-import { Card, Message, Grid, StrictCardProps } from 'semantic-ui-react';
+import Link from 'next/link';
+import {
+    Button,
+    Card,
+    Message,
+    Grid,
+    StrictCardProps
+} from 'semantic-ui-react';
 import Layout from '../../components/Layout';
 import getCampaignContract from '../../ethereum/campaign';
 import { fromWei } from 'web3-utils';
@@ -11,8 +18,8 @@ interface CampaignProps {
     campaignInfo: CampaignInfo | null;
 }
 
-interface CampaignContext {
-    [key: string]: 'address';
+export interface CampaignContext {
+    [key: string]: string;
 }
 
 const Campaign: React.FunctionComponent<CampaignProps> = ({ campaignInfo }) => {
@@ -38,7 +45,7 @@ const Campaign: React.FunctionComponent<CampaignProps> = ({ campaignInfo }) => {
                 header: campaign.requestsCount,
                 meta: 'Number of spending requests',
                 description:
-                    'Spending requests are used by the campaign manager to withdraw money from the contract. Requests must me approved by at least 51% of the contributors in order to be executed.'
+                    'Spending requests are used by the campaign manager to withdraw money from the contract. Index must me approved by at least 51% of the contributors in order to be executed.'
             },
             {
                 header: campaign.approversCount,
@@ -63,12 +70,27 @@ const Campaign: React.FunctionComponent<CampaignProps> = ({ campaignInfo }) => {
         <Layout>
             {campaignInfo ? (
                 <Grid>
-                    <Grid.Column width={11}>
-                        {renderInfo(campaignInfo)}
-                    </Grid.Column>
-                    <Grid.Column width={5}>
-                        <ContributeForm address={campaignInfo.address} />
-                    </Grid.Column>
+                    <Grid.Row>
+                        <Grid.Column width={11}>
+                            {renderInfo(campaignInfo)}
+                        </Grid.Column>
+
+                        <Grid.Column width={5}>
+                            <ContributeForm address={campaignInfo.address} />
+                        </Grid.Column>
+                    </Grid.Row>
+
+                    <Grid.Row>
+                        <Grid.Column>
+                            <Link
+                                href={`/campaigns/${campaignInfo.address}/requests`}
+                            >
+                                <a>
+                                    <Button primary>View requests</Button>
+                                </a>
+                            </Link>
+                        </Grid.Column>
+                    </Grid.Row>
                 </Grid>
             ) : (
                 <Message

@@ -5,7 +5,7 @@ import Layout from '../../components/Layout';
 import factory from '../../ethereum/factory';
 import web3 from '../../ethereum/web3';
 
-const New: React.FunctionComponent = () => {
+const NewCampaignForm: React.FunctionComponent = () => {
     const [campaignName, setCampaignName] = useState('');
     const [minimumContribution, setMinimumContribution] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
@@ -74,4 +74,4 @@ const New: React.FunctionComponent = () => {
     );
 };
 
-export default New;
+export default NewCampaignForm;
