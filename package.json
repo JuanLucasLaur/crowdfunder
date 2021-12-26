@@ -1,6 +1,6 @@
 {
   "name": "crowdfunder",
-  "version": "0.3.0",
+  "version": "1.0.0",
   "description": "Crowdfunding site using smart contracts",
   "main": "index.js",
   "scripts": {

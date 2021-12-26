@@ -7,3 +7,11 @@ export interface CampaignInfo {
     approversCount?: string;
     manager?: string;
 }
+
+export interface Request {
+    description: string;
+    value: string;
+    recipient: string;
+    complete: boolean;
+    approvalCount: string;
+}
