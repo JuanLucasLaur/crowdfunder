@@ -3,13 +3,16 @@ import { GetServerSideProps } from 'next';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 import { Button, Input, Message, Form } from 'semantic-ui-react';
-import { RequestsProps } from './index';
 import { CampaignContext } from '../../[address]';
 import Layout from '../../../../components/Layout';
 import getCampaignContract from '../../../../ethereum/campaign';
 import web3 from '../../../../ethereum/web3';
 
-const NewRequestForm: React.FunctionComponent<RequestsProps> = ({
+interface NewRequestsProps {
+    address: string;
+}
+
+const NewRequestForm: React.FunctionComponent<NewRequestsProps> = ({
     address
 }) => {
     const [description, setDescription] = useState('');
@@ -97,7 +100,7 @@ const NewRequestForm: React.FunctionComponent<RequestsProps> = ({
 };
 
 export const getServerSideProps: GetServerSideProps<
-    RequestsProps,
+    NewRequestsProps,
     CampaignContext
 > = async ({ params }) => {
     return {
