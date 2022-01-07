@@ -4,7 +4,7 @@ Crowdfunding website written with React.js and Typescript, using smart contracts
 
 ## Installation
 
-The project is written using next.js. After cloning it or downloading it you should install the project's dependencies using `npm install` . The project can then be started using `npm run dev`.
+The project is written using next.js. After cloning it or downloading it you should install the project's dependencies using `npm install` . An Infura API link and key are also necessary — these should be exported from the `src/ethereum/config/~dev.js` file. The project can then be started using `npm run dev`.
 
 ### Other dependencies
 
