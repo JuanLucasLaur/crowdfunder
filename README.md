@@ -4,7 +4,11 @@ Crowdfunding website written with React.js and Typescript, using smart contracts
 
 ## Installation
 
-The project is written using next.js. After cloning it or downloading it you should install the project's dependencies using `npm install` . An Infura API link and key are also necessary — these should be exported from the `src/ethereum/config/~dev.js` file. The project can then be started using `npm run dev`.
+The project is written using next.js. After cloning it or downloading it you should install the project's dependencies using `npm install` .
+
+To deploy the contract, an Infura API link and key are necessary — these should be exported from the `src/ethereum/config/~dev.js` file. Once the keys are set run `npm run compile` to compile the smart contract and then `npm run deploy` to deploy it to the Ethereum network (this might cost money, so deploy it to a test network).
+
+The project can then be started using `npm run dev`.
 
 ### Other dependencies
 
@@ -14,7 +18,11 @@ This project uses ESLint for linting and Prettier for code formatting.
 
 There are other commands available besides `npm run dev`:
 
-`npm run build`: Builds the application for production usage
+`npm run compile`: Compiles the solidity contract.
+
+`npm run deploy`: Deploys the compiled solidity contract to the Ethereum network (this might cost money, so deploy it to a test network).
+
+`npm run build`: Builds the application for production usage.
 
 `npm run start`: Starts a production server.
 

@@ -4,6 +4,8 @@
   "description": "Crowdfunding site using smart contracts",
   "main": "index.js",
   "scripts": {
+    "compile": "node src/ethereum/compile.js",
+    "deploy": "node src/ethereum/deploy.js",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
